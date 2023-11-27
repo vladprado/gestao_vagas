@@ -31,6 +31,8 @@ public class CompanyEntity {
     private String email;
 
     @Length(min = 10, max = 100, message = "A senha deve conter entre (10) e (100) caracteres")
+    private String password;
+    
     private String website;
     private String name;
     private String description;
