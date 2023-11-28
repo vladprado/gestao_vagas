@@ -9,7 +9,7 @@ import br.com.vladprado.gestao_vagas.modules.company.repositories.CompanyReposit
 
 
 @Service
-public class CreateCompanyUseCases {
+public class CreateCompanyUseCase {
     
 
     @Autowired
