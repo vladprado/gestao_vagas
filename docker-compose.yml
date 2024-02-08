@@ -9,4 +9,4 @@ services:
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
-      - POSTGRES_DB=gestao_vagasdocke
+      - POSTGRES_DB=gestao_vagas
