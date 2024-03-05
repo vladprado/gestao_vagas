@@ -88,7 +88,6 @@ public class ApplyJobCandidateUseCaseTest {
         when(jobRepository.findById(idJob)).thenReturn(Optional.of(new JobEntity()));        
 
         when(applyJobRepository.save(applyJob)).thenReturn(applyJobCreated);
-
         var result = applyJobCandidateUseCase.execute(idCandidate, idJob);
 
         assertThat(result).hasFieldOrProperty("id");
