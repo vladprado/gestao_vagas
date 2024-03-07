@@ -1,5 +1,8 @@
 package br.com.vladprado.gestao_vagas.modules.company.controllers;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertTrue;
+
 import java.util.UUID;
 
 import org.junit.Before;
@@ -18,9 +21,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers;
 
+import br.com.vladprado.gestao_vagas.exceptions.CompanyNotFoundException;
 import br.com.vladprado.gestao_vagas.modules.company.dto.CreateJobDTO;
 import br.com.vladprado.gestao_vagas.modules.company.entities.CompanyEntity;
-import br.com.vladprado.gestao_vagas.modules.company.repositories.CompanyRepositoty;
+import br.com.vladprado.gestao_vagas.modules.company.repositories.CompanyRepository;
 import br.com.vladprado.gestao_vagas.utils.TestUtils;
 
 
@@ -35,7 +39,7 @@ public class CreateJobControllerTest {
     private WebApplicationContext context;
 
     @Autowired
-    private CompanyRepositoty companyRepositoty;
+    private CompanyRepository companyRepositoty;
 
     @Before
     public void setup() {
@@ -69,6 +73,22 @@ public class CreateJobControllerTest {
             .andExpect(MockMvcResultMatchers.status().isOk());
 
         System.out.println(result);
+    }
+
+
+    @Test
+    public void should_not_be_able_to_create_a_new_job_if_company_not_found() throws Exception {
+        var createJobDTO = CreateJobDTO.builder()
+            .benefits("BENEFITS_TEST")
+            .description("DESCRIPTION_TEST")
+            .level("LEVEL_TEST")
+            .build();
+
+            mvc.perform(MockMvcRequestBuilders.post("/company/job/")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtils.objectToJson(createJobDTO))
+            .header("Authorization", TestUtils.generateToken(UUID.randomUUID(), "JAVAGAS_@123#")))
+            .andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 
 }

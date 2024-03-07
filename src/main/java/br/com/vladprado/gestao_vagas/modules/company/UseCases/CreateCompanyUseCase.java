@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.vladprado.gestao_vagas.exceptions.UserFoundException;
 import br.com.vladprado.gestao_vagas.modules.company.entities.CompanyEntity;
-import br.com.vladprado.gestao_vagas.modules.company.repositories.CompanyRepositoty;
+import br.com.vladprado.gestao_vagas.modules.company.repositories.CompanyRepository;
 
 
 @Service
@@ -14,13 +14,13 @@ public class CreateCompanyUseCase {
     
 
     @Autowired
-    private CompanyRepositoty companyRepositoty;
+    private CompanyRepository companyRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     public CompanyEntity execute(CompanyEntity companyEntity) {
-        this.companyRepositoty
+        this.companyRepository
         .findByUsernameOrEmail(companyEntity.getUsername(), companyEntity.getEmail())
         .ifPresent((user) -> { 
             throw new UserFoundException();
@@ -30,6 +30,6 @@ public class CreateCompanyUseCase {
 
         companyEntity.setPassword(password);
         
-        return this.companyRepositoty.save(companyEntity);
+        return this.companyRepository.save(companyEntity);
     }
 }

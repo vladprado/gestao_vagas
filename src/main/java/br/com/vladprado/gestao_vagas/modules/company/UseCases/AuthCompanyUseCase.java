@@ -17,7 +17,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 
 import br.com.vladprado.gestao_vagas.modules.company.dto.AuthCompanyDTO;
 import br.com.vladprado.gestao_vagas.modules.company.dto.AuthCompanyResponseDTO;
-import br.com.vladprado.gestao_vagas.modules.company.repositories.CompanyRepositoty;
+import br.com.vladprado.gestao_vagas.modules.company.repositories.CompanyRepository;
 
 @Service
 public class AuthCompanyUseCase {
@@ -26,7 +26,7 @@ public class AuthCompanyUseCase {
     private String secretKey;
     
     @Autowired
-    private CompanyRepositoty companyRepositoty;
+    private CompanyRepository companyRepository;
 
 
     @Autowired
@@ -35,7 +35,7 @@ public class AuthCompanyUseCase {
 
     public AuthCompanyResponseDTO execute(AuthCompanyDTO authCompanyDTO) throws AuthenticationException {
 
-        var company = this.companyRepositoty.findByUsername(authCompanyDTO.getUsername()).orElseThrow(
+        var company = this.companyRepository.findByUsername(authCompanyDTO.getUsername()).orElseThrow(
             () -> {
                 throw new UsernameNotFoundException("Username/password incorrect.");
 
