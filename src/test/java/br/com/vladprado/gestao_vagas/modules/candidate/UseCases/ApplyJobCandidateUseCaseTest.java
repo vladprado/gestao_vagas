@@ -44,7 +44,6 @@ public class ApplyJobCandidateUseCaseTest {
         try {
             applyJobCandidateUseCase.execute(null, null);    
         } catch (Exception e) {
-            // TODO: handle exception
             assertThat(e).isInstanceOf(UserNotFoundException.class);
         }
 
@@ -65,7 +64,6 @@ public class ApplyJobCandidateUseCaseTest {
         try {
             applyJobCandidateUseCase.execute(idCandidate, null);
         } catch (Exception e) {
-            // TODO: handle exception
             assertThat(e).isInstanceOf(JobNotFoundException.class);
         }
     }

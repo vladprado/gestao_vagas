@@ -17,7 +17,6 @@ public class TestUtils {
         try {
             return objectMapper.writeValueAsString(obj);
         } catch (Exception e) {
-            // TODO: handle exception
             throw new RuntimeException(e);
         }
     }

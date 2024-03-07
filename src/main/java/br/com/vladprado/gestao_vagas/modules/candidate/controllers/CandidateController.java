@@ -121,7 +121,6 @@ public class CandidateController {
             var result =  this.applyJobCandidateUseCase.execute(UUID.fromString(idCandidate.toString()), idJob);    
             return ResponseEntity.ok().body(result);
         } catch (Exception e) {
-            // TODO: handle exception
             return ResponseEntity.badRequest().body(e.getMessage());
         }
         
