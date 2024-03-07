@@ -59,10 +59,10 @@ public class AuthCompanyUseCase {
             .sign(algorithm);
             //senão for igual, retorna erro
             //Se for igual, retorna token
-            var authCompanyResponseDTO = AuthCompanyResponseDTO.builder()
-                .access_token(token)
-                .expires_in(expires_in.toEpochMilli())
-                .build();
+        var authCompanyResponseDTO = AuthCompanyResponseDTO.builder()
+            .access_token(token)
+            .expires_in(expires_in.toEpochMilli())
+            .build();
                 
         return authCompanyResponseDTO;
     }

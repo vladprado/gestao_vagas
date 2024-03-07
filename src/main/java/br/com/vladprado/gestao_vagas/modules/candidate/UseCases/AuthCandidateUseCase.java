@@ -3,7 +3,6 @@ package br.com.vladprado.gestao_vagas.modules.candidate.UseCases;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
-import java.util.Optional;
 
 import javax.security.sasl.AuthenticationException;
 
